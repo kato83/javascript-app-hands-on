@@ -25,7 +25,7 @@ app.get('/todo', async (req, res) => {
   await prisma.todo.create({
     data: {
       title: `TEST: ${new Date().toISOString()}`,
-      completed: false,
+      isComplete: false,
       createdAt: new Date(),
     }
   })
