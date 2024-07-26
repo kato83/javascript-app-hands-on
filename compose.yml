@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  nodejs:
+    image: node:20
+    container_name: nodejs
+    volumes:
+      - ./backend:/usr/src/app
+    working_dir: /usr/src/app
+    ports:
+      - "80:3000"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - DATABASE_URL=postgresql://user:password@postgres:5432/todo
+      - REDIS_URL=redis://redis:6379
+    command: sh -c "npm install && npx prisma migrate deploy && npm run dev"
+
+  postgres:
+    image: postgres:16.3
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todo
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.2.5
+    container_name: redis
+    volumes:
+      - redis-data:/data
+
+volumes:
+  postgres-data:
+  redis-data:
