@@ -15,7 +15,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://user:password@postgres:5432/todo
       - REDIS_URL=redis://redis:6379
-    command: sh -c "npm install && npx prisma migrate deploy && npm run dev"
+    command: sh -c "npm install && npx prisma migrate deploy && npx prisma generate && npm run dev"
 
   postgres:
     image: postgres:16.3
