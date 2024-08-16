@@ -16,3 +16,9 @@ Jamstack構成なWEBアプリケーションを開発してみましょう。
 # 設計
 
 [設計 · kato83/javascript-app-hands-on-2024 Wiki](https://github.com/kato83/javascript-app-hands-on-2024/wiki/%E8%A8%AD%E8%A8%88) を参照ください。
+
+# 加藤メモ
+
+```shell
+$ docker compose run --rm nodejs npx prisma --version
+```
